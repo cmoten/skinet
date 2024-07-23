@@ -31,12 +31,18 @@ namespace skinet.Repositories
 
         public async Task<IEnumerable<Product>> GetAllAsynch()
         {
-            return await _storeContext.Products.ToListAsync();
+            return await _storeContext.Products
+                .Include(p => p.ProductType)
+                .Include(p => p.ProductBrand)
+                .ToListAsync();
         }
 
         public async Task<Product?> GetByIdAsynch(int id)
         {
-            return await _storeContext.Products.FindAsync(id);
+            return await _storeContext.Products
+                .Include(p => p.ProductType)
+                .Include(p => p.ProductBrand)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task UpdateProductAsynch(Product product)
