@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using skinet.Data;
+using skinet.Interfaces;
 using skinet.Repositories;
 
 namespace skinet
@@ -21,6 +22,7 @@ namespace skinet
 
             //Repositories
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             //Build App
             var app = builder.Build();

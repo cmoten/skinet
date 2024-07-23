@@ -1,6 +1,7 @@
 ﻿using skinet.Data;
 using skinet.Models;
 using Microsoft.EntityFrameworkCore;
+using skinet.Interfaces;
 
 namespace skinet.Repositories
 {
